@@ -1,0 +1,12 @@
+{
+  "name": "discordbot",
+  "version": "0.1.0",
+  "description": "My adaptative Discord Bot",
+  "main": "main.js",
+  "repository": "https://github.com/dimipann/discordbot.git",
+  "author": "DPannequin <dimitri@pannequin.fr>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "discordjs/discord.js"
+  }
+}
