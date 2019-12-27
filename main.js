@@ -2,10 +2,6 @@ const { Client } = require("discord.js");
 const { TOKEN, PREFIX } = require("./config");
 const client = new Client({ disableEveryone: true });
 
-client.on("ready", () => {
-  console.log("A votre service et à celui de votre famille !");
-});
-
 client.on("message", msg => {
   if (msg.author.bot) {
     return;
@@ -18,4 +14,15 @@ client.on("message", msg => {
   }
 });
 
+client.on("guildMemberAdd", member => {
+  member.send("Salut à toi !");
+  const channel_general = client.channels.find(r => r.name === "general");
+  channel_general.send(`Bienvenue ${member} sur notre serveur !`);
+});
+
 client.login(TOKEN);
+
+client.on("ready", () => console.log("A votre service et à celui de votre famille !"));
+client.on("error", () => console.error);
+client.on("warn", () => console.warn);
+client.on("debug", () => console.log);
