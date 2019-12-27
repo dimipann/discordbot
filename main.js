@@ -7,7 +7,13 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
-  if (msg.content.startsWith(`${PREFIX}ping`)) {
+  if (msg.author.bot) {
+    return;
+  }
+  const args = msg.content.split(/ +/g);
+  const cmd = args.shift().toLowerCase();
+
+  if (cmd === `${PREFIX}ping`) {
     msg.channel.send("Pong !");
   }
 });
