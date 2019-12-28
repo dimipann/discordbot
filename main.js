@@ -12,11 +12,15 @@ client.on("message", msg => {
   if (cmd === `${PREFIX}ping`) {
     msg.channel.send("Pong !");
   }
+  if (cmd === `${PREFIX}repeat`) {
+    msg.channel.send(args.join(" "));
+    msg.delete({ timeout: 3000 }).then(msg => console.log(`Un message de ${msg.author.username} a été supprimé : ${msg.content}`));
+  }
 });
 
 client.on("guildMemberAdd", member => {
   member.send("Salut à toi !");
-  const channel_general = client.channels.find(r => r.name === "general");
+  const channel_general = client.channels.find(r => r.name === "général");
   channel_general.send(`Bienvenue ${member} sur notre serveur !`);
 });
 
