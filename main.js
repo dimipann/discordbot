@@ -16,6 +16,23 @@ client.on("message", msg => {
     msg.channel.send(args.join(" "));
     msg.delete({ timeout: 3000 }).then(msg => console.log(`Un message de ${msg.author.username} a été supprimé : ${msg.content}`));
   }
+  if (cmd === `${PREFIX}role`) {
+    const role = msg.guild.roles.find(r => r.name === args[0]);
+    const channel_logs = client.channels.find(r => r.name === "logs");
+    if (!role) {
+      return msg.channel.send("Ce rôle n'existe pas !");
+    }
+    if (msg.member.roles.find(r => r.name === args[0])) {
+      msg.member.roles.remove(role);
+      channel_logs.send(`J'ai supprimé le rôle ${role} à ${msg.author}.`);
+      msg.delete({ timeout: 3000 });
+    }
+    else {
+      msg.member.roles.add(role);
+      channel_logs.send(`J'ai ajouté le rôle ${role} à ${msg.author}.`);
+      msg.delete({ timeout: 3000 });
+    }
+  }
 });
 
 client.on("guildMemberAdd", member => {
